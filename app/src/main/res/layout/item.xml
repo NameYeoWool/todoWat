@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="20dp"
+    app:cardCornerRadius="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            />
+
+        <TextView
+            android:id="@+id/item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_toRightOf="@id/item_image"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:text="pc방 이름"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/item_address"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@+id/item_name"
+            android:layout_toRightOf="@id/item_image"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="8dp"
+            android:text="상세 주소"
+            android:textSize="12sp"
+            />
+
+        <RatingBar
+            android:id="@+id/item_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="43dp"
+            android:isIndicator="false"
+            android:max="5"
+            android:numStars="5"
+            android:paddingLeft="0dp"
+            android:rating="3"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:stepSize="0.5"
+            android:theme="@color/yellow" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="잔여 좌석 :"
+            android:textSize="12sp"
+            android:textStyle="bold"
+
+            />
+        <TextView
+            android:id="@+id/item_cnt"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="00"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="23dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:text="석"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
