@@ -33,7 +33,7 @@
             android:textSize="15sp"
             />
         <TextView
-            android:id="@+id/item_nonaddress"
+            android:id="@+id/item_non_address"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_below="@+id/item_non_name"

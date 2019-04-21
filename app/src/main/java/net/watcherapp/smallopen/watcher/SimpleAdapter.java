@@ -21,6 +21,14 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
     private final Context mContext;
     private List<String> mData;
 
+    public SimpleAdapter(Context context, String[] data) {
+        mContext = context;
+        if (data != null)
+            mData = new ArrayList<String>(Arrays.asList(data));
+        else mData = new ArrayList<String>();
+    }
+
+
     public void add(String s,int position) {
         position = position == -1 ? getItemCount()  : position;
         mData.add(position,s);
@@ -41,13 +49,6 @@ public class SimpleAdapter extends RecyclerView.Adapter<SimpleAdapter.SimpleView
             super(view);
             title = (TextView) view.findViewById(R.id.item_name);
         }
-    }
-
-    public SimpleAdapter(Context context, String[] data) {
-        mContext = context;
-        if (data != null)
-            mData = new ArrayList<String>(Arrays.asList(data));
-        else mData = new ArrayList<String>();
     }
 
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
