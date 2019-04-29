@@ -2,6 +2,7 @@ package net.watcherapp.smallopen.watcher;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,7 @@ import java.util.Comparator;
 public class SimpleSectionedRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private final Context mContext;
-    private static final int SECTION_TYPE = 0;
+    private static final int SECTION_TYPE = 5;
 
     private boolean mValid = true;
     private int mSectionResourceId;
@@ -78,10 +79,14 @@ public class SimpleSectionedRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int typeView) {
         if (typeView == SECTION_TYPE) {
+            Log.d("type View Section Type ", String.valueOf(typeView));
             final View view = LayoutInflater.from(mContext).inflate(mSectionResourceId, parent, false);
             return new SectionViewHolder(view,mTextResourceId);
         }else{
-            return mBaseAdapter.onCreateViewHolder(parent, typeView -1);
+//            return mBaseAdapter.onCreateViewHolder(parent, typeView -1);
+
+            Log.d("type View not section", String.valueOf(typeView));
+            return mBaseAdapter.onCreateViewHolder(parent, typeView);
         }
     }
 
@@ -99,6 +104,7 @@ public class SimpleSectionedRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     public int getItemViewType(int position) {
         return isSectionHeaderPosition(position)
                 ? SECTION_TYPE
+//                : mBaseAdapter.getItemViewType(sectionedPositionToPosition(position)) +1 ;
                 : mBaseAdapter.getItemViewType(sectionedPositionToPosition(position)) +1 ;
     }
 
@@ -122,12 +128,20 @@ public class SimpleSectionedRecyclerViewAdapter extends RecyclerView.Adapter<Rec
     public void setSections(Section[] sections) {
         mSections.clear();
 
+        // sort by 내림차순
         Arrays.sort(sections, new Comparator<Section>() {
             @Override
             public int compare(Section o, Section o1) {
-                return (o.firstPosition == o1.firstPosition)
-                        ? 0
-                        : ((o.firstPosition < o1.firstPosition) ? -1 : 1);
+                if(o.firstPosition < o1.firstPosition){
+                    return -1;
+                }else if( o.firstPosition > o1.firstPosition){
+                    return  1;
+                } else{
+                    return 0;
+                }
+//                return (o.firstPosition == o1.firstPosition)
+//                        ? 0
+//                        : ((o.firstPosition < o1.firstPosition) ? -1 : 1);
             }
         });
 
