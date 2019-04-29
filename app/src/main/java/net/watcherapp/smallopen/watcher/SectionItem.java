@@ -19,6 +19,8 @@ public class SectionItem extends PcListItem {
         this.title = title;
     }
 
+
+
     @Override
     public int getType() {
         return TYPE_SECTION;
