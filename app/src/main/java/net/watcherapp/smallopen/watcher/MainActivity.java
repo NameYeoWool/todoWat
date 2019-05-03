@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity
                 case FRAGMNET_PCLIST:
                     return new PcListFragment();
                 case FRAGMENT_MAP:
-                    return new MyFragment();
+                    return new PcMapFragment();
 
                     /*  case FRAGMENT_QANDA:
                     return new MyFragment();

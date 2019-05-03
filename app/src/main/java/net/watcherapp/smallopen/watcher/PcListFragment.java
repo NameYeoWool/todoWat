@@ -68,10 +68,13 @@ public class PcListFragment extends Fragment {
             public void onSwitch(int position, String tabText) {
                 if(tabText.equals("혜화역")){
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-                    new PcListTask().execute();
+                    new PcListTask().execute("종로구");
                 }else if(tabText.equals("성대역")){
-
+                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+                    new PcListTask().execute("장안구");
                 }else if(tabText.equals("회기역")) {
+                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+//                    new PcListTask().execute("종로구");
 
                 }
 
@@ -90,11 +93,12 @@ public class PcListFragment extends Fragment {
         JSONArray json_arr_contact_non;
         List<PcListItem> consolidatedList = new ArrayList<>();
         @Override
-        protected String doInBackground(String... voids) {
+        protected String doInBackground(String... strings) {
 
 
             try {
-                String ess = "http://nameyeowool.pythonanywhere.com/room/all/";
+//                String ess = "http://nameyeowool.pythonanywhere.com/room/all/";
+                String ess = "http://nameyeowool.pythonanywhere.com/room/"+strings[0]+"/";
                 URL url = new URL(ess);
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.setConnectTimeout(5 * 1000);
