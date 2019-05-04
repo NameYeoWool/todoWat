@@ -8,22 +8,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    public interface OnItemClickListener {
+        void onItemClick(PcInfoOfJson item);
+    }
 
     private Context mContext;
     List<PcListItem> consolidatedList = new ArrayList<>();
 
-    public Adapter2(Context context, List<PcListItem> consolidatedList) {
+    private final OnItemClickListener listener;
+
+
+    public Adapter2(Context context, List<PcListItem> consolidatedList,OnItemClickListener listener)
+    {
         this.consolidatedList = consolidatedList;
         this.mContext = context;
-
-
+        this.listener = listener;
     }
+
 
 
     @Override
@@ -71,6 +79,8 @@ public class Adapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 contactViewHolder.tvItemCnt.setText(String.valueOf( contactItem.getPcInfoOfJson().getCnt_empty() ) );
                 Log.d("item_cnt : ", String.valueOf(contactItem.getPcInfoOfJson().getCnt_empty()));
 
+                contactViewHolder.bind(contactItem.getPcInfoOfJson(),listener);
+
                 break;
 
             case PcListItem.TYPE_CONTACT_NON:
@@ -84,6 +94,7 @@ public class Adapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 contactNonViewHolder.tvName.setText(contactNonItem.getPcInfoOfJson().getName());
                 contactNonViewHolder.tvAddress.setText(contactNonItem.getPcInfoOfJson().getAddress());
 
+                contactNonViewHolder.bind(null,listener);
                 break;
 
             case PcListItem.TYPE_SECTION:
@@ -121,6 +132,14 @@ public class Adapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.tvAddress = (TextView) v.findViewById(R.id.item_non_address);
             this.ratingBar = (RatingBar) v.findViewById(R.id.item_ratingbar);
         }
+        public void bind(final PcInfoOfJson item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+        }
+
     }
 
     // View holder for general row item
@@ -137,6 +156,14 @@ public class Adapter2 extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.ratingBar = (RatingBar) v.findViewById(R.id.item_ratingbar);
             this.tvItemCnt = (TextView) v.findViewById(R.id.item_cnt);
 
+        }
+
+        public void bind(final PcInfoOfJson item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 

@@ -183,7 +183,18 @@ public class PcListFragment extends Fragment {
                 exit(0);
             }
 
-            mAdapter2 = new Adapter2(getContext(),consolidatedList);
+            // set adapter and item Listener
+            mAdapter2 = new Adapter2(getContext(),consolidatedList,new Adapter2.OnItemClickListener(){
+                @Override
+                public void onItemClick(PcInfoOfJson item) {
+                    if(item == null){
+                        Toast.makeText(getContext(),"가맹점이 아닙니다.", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getContext(),item.getName(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
             //adapter = new Adapter(getContext(), consolidatedList);
             Log.d("end","After madapter2 end");
 

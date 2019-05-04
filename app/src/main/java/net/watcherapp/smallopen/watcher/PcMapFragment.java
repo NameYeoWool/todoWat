@@ -32,7 +32,7 @@ public class PcMapFragment extends Fragment
         implements OnMapReadyCallback {
 
     private MapView mapView = null;
-
+    private GoogleMap mGoogleMap = null;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +53,17 @@ public class PcMapFragment extends Fragment
             public void onSwitch(int position, String tabText) {
                 if(tabText.equals("혜화역")){
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+                    if(mGoogleMap == null) Toast.makeText(getContext(), "잠시 후 다시 눌러주세요", Toast.LENGTH_SHORT).show();
+                    else mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.582301,127.001849), 17));
+
                 }else if(tabText.equals("성대역")){
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-//                    new PcListTask().execute("장안구");
+                    if(mGoogleMap == null) Toast.makeText(getContext(), "잠시 후 다시 눌러주세요", Toast.LENGTH_SHORT).show();
+                    else mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.300170,126.970716),17));
                 }else if(tabText.equals("회기역")) {
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-//                    new PcListTask().execute("종로구");
+                    if(mGoogleMap == null) Toast.makeText(getContext(), "잠시 후 다시 눌러주세요", Toast.LENGTH_SHORT).show();
+                    else mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.582301,127.001849),17));
 
                 }
 
@@ -127,6 +132,9 @@ public class PcMapFragment extends Fragment
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
+        mGoogleMap = googleMap;
+
         LatLng SEOUL = new LatLng(37.582301, 127.001849);
 
         MarkerOptions markerOptions = new MarkerOptions();
