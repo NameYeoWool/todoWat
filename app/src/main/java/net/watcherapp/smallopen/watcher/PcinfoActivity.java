@@ -13,48 +13,43 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class PcinfoActivity extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private SectionsPagerAdapter2 mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
     public static final String LOG_TAG = "LOGMainActivity";
 
-    public static final int FRAGMNET_PCLIST = 0;
-    public static final int FRAGMENT_MAP = 1;
-    public static final int ACTIVITY_PCINFO= 2;
+    public static final int FRAGMENT_SEAT = 0;
+    public static final int FRAGMENT_SPEC = 1;
+    public static final int FRAGMENT_FOOD = 2;
+    public static final int FRAGMENT_REVIEW = 3;
+    private String pcName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_pcinfo);
 
+        // Get the transferred data from source activity.
+        Intent intent = getIntent();
+        pcName = intent.getStringExtra("pcName");
+//        Log.d("pcname", pcName);
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter2(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs_pcinfo);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -63,12 +58,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
             super.onBackPressed();
-        }
     }
 
     @Override
@@ -93,48 +83,31 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+    public class SectionsPagerAdapter2 extends FragmentPagerAdapter {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
-
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
-
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter2(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case FRAGMNET_PCLIST:
-                    return new PcListFragment();
-                case FRAGMENT_MAP:
-                    return new PcMapFragment();
+                case FRAGMENT_SEAT:
+                    SeatFragment seatFragment = new SeatFragment();
+                    // Supply index input as an argument.
+                    Bundle args = new Bundle();
+                    args.putString("pcName", pcName);
+                    seatFragment.setArguments(args);
+                    return seatFragment;
+                case FRAGMENT_SPEC:
+//                    return new PcMapFragment();
 
-
-//                case FRAGMENT_SPEC:
-//                    return new MapFragment();
+                    /*  case FRAGMENT_QANDA:
+                    return new MyFragment();
+                case FRAGMENT_SPEC:
+                    return new MapFragment();*/
 
                 default:
                     return new MyFragment();
@@ -148,7 +121,7 @@ public class MainActivity extends AppCompatActivity
             //return 4;
 
 
-            return 2;
+            return 4;
         }
     }
 }

@@ -1,5 +1,6 @@
 package net.watcherapp.smallopen.watcher;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -191,6 +192,9 @@ public class PcListFragment extends Fragment {
                         Toast.makeText(getContext(),"가맹점이 아닙니다.", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(getContext(),item.getName(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), PcinfoActivity.class);
+                        intent.putExtra("pcName", item.getName());
+                        startActivity(intent);
                     }
                 }
             });

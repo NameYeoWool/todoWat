@@ -13,29 +13,35 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_constraintTop_toTopOf="@+id/container">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tabs"
+            android:id="@+id/tabs_pcinfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <android.support.design.widget.TabItem
-                android:id="@+id/tabItem"
+                android:id="@+id/tabItem_pcinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="pc방 목록" />
+                android:text="좌석 현황" />
 
             <android.support.design.widget.TabItem
-                android:id="@+id/tabItem2"
+                android:id="@+id/tabItem2_pcinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="지도" />
+                android:text="사양 및 이벤트" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem3_pcinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="음식" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem4_pcinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="리뷰" />
 
 
         </android.support.design.widget.TabLayout>
