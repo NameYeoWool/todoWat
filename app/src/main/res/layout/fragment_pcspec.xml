@@ -1,0 +1,75 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_spec_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/spec_title"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="사양 정보"
+        android:textSize="20sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        />
+    <TextView
+        android:id="@+id/spec_cpu_title"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/colorPrimary"
+        />
+    <TextView
+        android:id="@+id/spec_cpu"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_title"
+        android:layout_toRightOf="@+id/spec_cpu_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/spec_ram_title"
+        android:layout_width="65dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_cpu_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/colorPrimary"
+        />
+    <TextView
+        android:id="@+id/spec_ram"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_cpu"
+        android:layout_toRightOf="@+id/spec_ram_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        />
+
+
+
+
+
+
+</RelativeLayout>

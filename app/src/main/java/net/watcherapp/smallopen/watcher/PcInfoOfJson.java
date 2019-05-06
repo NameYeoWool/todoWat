@@ -1,5 +1,8 @@
 package net.watcherapp.smallopen.watcher;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 import org.json.JSONObject;
 
 /**
@@ -7,10 +10,26 @@ import org.json.JSONObject;
  */
 
 public class PcInfoOfJson {
-    private String name,address;
-    private Float latitude, longitude;
+    @SerializedName("name")
+    @Expose
+    private String name;
+    @SerializedName("address")
+    @Expose
+    private String address;
+    @SerializedName("latitude")
+    @Expose
+    private Float latitude;
+    @SerializedName("longitude")
+    @Expose
+    private Float longitude;
+    @SerializedName("notice")
+    @Expose
     private String notice = "";
+    @SerializedName("spec")
+    @Expose
     private String spec = "";
+    @SerializedName("cnt_empty")
+    @Expose
     private int cnt_empty;
 
 
@@ -20,6 +39,7 @@ public class PcInfoOfJson {
         this.address = jOb.optString("address", "non");
         this.latitude = (float)jOb.optDouble("latitude", 0);
         this.longitude = (float)jOb.optDouble("longitude", 0);
+        this.notice = jOb.optString("notice", "non");
         this.spec = jOb.optString("spec","non");
         this.cnt_empty = jOb.optInt("cnt_empty",0);
     }

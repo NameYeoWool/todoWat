@@ -10,17 +10,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="pcName"
+        android:textStyle="bold"
         android:textSize="25sp"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
         />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_refresh"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignBaseline="@id/seat_pcName"
+        android:layout_marginTop="35dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_refresh"
+        android:padding="0dp"
+        android:backgroundTint="#ffffff"
         />
     <ImageView
         android:id="@+id/seat_image"
@@ -33,10 +38,21 @@
         />
 
     <TextView
-        android:id="@+id/seat_event"
+        android:id="@+id/title_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/seat_image"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="이벤트 및 공지사항"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/seat_notice"
         android:layout_width="400dp"
         android:layout_height="300dp"
-        android:layout_below="@id/seat_image"
+        android:layout_below="@id/title_notice"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
