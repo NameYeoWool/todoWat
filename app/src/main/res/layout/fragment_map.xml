@@ -27,4 +27,111 @@
         />
 
 
+    <RelativeLayout
+        android:id="@+id/bottom_view"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_alignBottom="@id/map"
+        android:background="@drawable/layout_bg"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:id="@+id/bottom_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:id="@+id/bottom_name"
+            android:layout_width="200dp"
+            android:layout_height="25dp"
+            android:text="PC Name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@+id/bottom_image"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            />
+
+
+        <TextView
+            android:id="@+id/bottom_address"
+            android:layout_width="260dp"
+            android:layout_height="25dp"
+            android:text="address"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_toRightOf="@+id/bottom_image"
+            android:layout_below="@+id/bottom_name"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <RatingBar
+            android:id="@+id/bottom_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bottom_address"
+            android:layout_marginLeft="80dp"
+            android:isIndicator="false"
+            android:max="5"
+            android:numStars="5"
+            android:paddingLeft="0dp"
+            android:rating="3"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:stepSize="0.5"
+            android:progressTint="@color/yellow"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:text="잔여 좌석 : "
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="35dp"
+            android:layout_marginRight="60dp"
+            />
+        <TextView
+            android:id="@+id/bottom_cnt"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:text="00"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="35dp"
+            android:layout_marginRight="20dp"
+            />
+
+        <Button
+            android:id="@+id/bottom_btn_info"
+            android:layout_width="100dp"
+            android:layout_height="35dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/layout_bg"
+            android:backgroundTint="@color/spec_view"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="5dp"
+            android:text="좌석 확인"
+            android:textColor="#ffffff"
+            />
+
+
+    </RelativeLayout>
+
+
 </RelativeLayout>

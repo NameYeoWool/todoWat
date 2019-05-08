@@ -58,7 +58,7 @@
             android:scaleX="0.5"
             android:scaleY="0.5"
             android:stepSize="0.5"
-            android:theme="@color/yellow" />
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="20dp"

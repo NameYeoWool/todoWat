@@ -16,17 +16,30 @@
         android:layout_marginTop="30dp"
         />
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spec_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#cccccc"
+        android:textColor="#000000"
+        android:text="사양 정보"
+        />
+    <TextView
         android:id="@+id/spec_cpu_title"
-        android:layout_width="65dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_below="@id/spec_title"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
-        android:text="사양 정보"
+        android:text="CPU"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
+        android:background="@color/spec_view"
+        android:textColor="#ffffff"
         />
     <TextView
         android:id="@+id/spec_cpu"
@@ -35,7 +48,7 @@
         android:layout_below="@id/spec_title"
         android:layout_toRightOf="@+id/spec_cpu_title"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:text="사양 정보"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
@@ -43,16 +56,18 @@
 
     <TextView
         android:id="@+id/spec_ram_title"
-        android:layout_width="65dp"
+        android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_below="@id/spec_cpu_title"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
-        android:text="사양 정보"
+        android:text="RAM"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/colorPrimary"
+        android:gravity="center"
+        android:background="@color/spec_view"
+        android:textColor="#ffffff"
         />
     <TextView
         android:id="@+id/spec_ram"
@@ -61,11 +76,173 @@
         android:layout_below="@id/spec_cpu"
         android:layout_toRightOf="@+id/spec_ram_title"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+
+        />
+
+    <TextView
+        android:id="@+id/spec_graphic_title"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_ram_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="그래픽카드"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/spec_view"
+        android:textColor="#ffffff"
+        />
+    <TextView
+        android:id="@+id/spec_graphic"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_ram"
+        android:layout_toRightOf="@+id/spec_graphic_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
         android:text="사양 정보"
         android:textSize="15sp"
         android:layout_centerHorizontal="true"
         />
+
+    <TextView
+        android:id="@+id/spec_monitor_title"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_graphic_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="모니터"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/spec_view"
+        android:textColor="#ffffff"
+        />
+    <TextView
+        android:id="@+id/spec_monitor"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_graphic"
+        android:layout_toRightOf="@+id/spec_graphic_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/spec_headset_title"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_monitor_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="헤드셋"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/spec_view"
+        android:textColor="#ffffff"
+        />
+    <TextView
+        android:id="@+id/spec_headset"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_monitor"
+        android:layout_toRightOf="@+id/spec_graphic_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/spec_keyboard_title"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_headset_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="키보드"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/spec_view"
+        android:textColor="#ffffff"
+        />
+    <TextView
+        android:id="@+id/spec_keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_headset"
+        android:layout_toRightOf="@+id/spec_graphic_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/spec_mouse_title"
+        android:layout_width="70dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_keyboard_title"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="마우스"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/spec_view"
+        android:textColor="#ffffff"
+        />
+    <TextView
+        android:id="@+id/spec_mouse"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/spec_keyboard"
+        android:layout_toRightOf="@+id/spec_graphic_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:text="사양 정보"
+        android:textSize="15sp"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spec_mouse_title"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="#cccccc"
+        android:textColor="#000000"
+        android:text="사양 이슈"
+        />
+    <TextView
+        android:id="@+id/spec_issue"
+        android:layout_below="@id/spec_mouse_title"
+        android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        />
+
 
 
 

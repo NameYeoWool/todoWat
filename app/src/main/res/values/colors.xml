@@ -8,4 +8,5 @@
 
     <color name="pc_view_text">#ffffff</color>
     <color name="yellow">#ffff00</color>
+    <color name="spec_view">#333399</color>
 </resources>

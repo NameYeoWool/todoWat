@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <TextView
+            android:id="@+id/review_pcname"
+            android:layout_width="300dp"
+            android:layout_height="40dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/layout_bg"
+            android:gravity="center"
+            android:text="리뷰"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/review_pcname"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="평점"
+            android:textSize="20sp" />
+
+
+        <RatingBar
+            android:id="@+id/review_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/review_pcname"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:isIndicator="false"
+            android:max="5"
+            android:numStars="5"
+            android:paddingLeft="0dp"
+            android:progressTint="@color/yellow"
+            android:rating="3"
+            android:scaleX="1"
+            android:scaleY="1"
+            android:stepSize="0.5" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/review_ratingbar"
+            android:layout_marginTop="50dp"
+            android:text="아직 리뷰를 지원하지 않습니다."
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="20dp"
+            />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_menu_add"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="40dp"
+            />
+
+
+    </RelativeLayout>
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>

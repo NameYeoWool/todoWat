@@ -15,7 +15,7 @@ public class MyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_image, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText("새로 만든 프래그먼트입니다.");
+        textView.setText("아직 지원하지 않습니다..");
 
         return rootView;
     }

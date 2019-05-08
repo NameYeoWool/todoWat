@@ -22,15 +22,17 @@ import static net.watcherapp.smallopen.watcher.PcinfoActivity.pcName;
 
 
 public class SeatFragment extends Fragment {
-    TextView nameView;
-    TextView noticeView;
-    ImageView imageView;
+    private TextView nameView;
+    private TextView noticeView;
+    private TextView cntView;
+    private ImageView imageView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_seat_image, container, false);
         nameView = (TextView) rootView.findViewById(R.id.seat_pcName);
         noticeView = (TextView) rootView.findViewById(R.id.seat_notice);
+        cntView = (TextView) rootView.findViewById(R.id.seat_cnt_textView);
         imageView = (ImageView) rootView.findViewById(R.id.seat_image);
 
         nameView.setText(pcName);
@@ -44,6 +46,7 @@ public class SeatFragment extends Fragment {
             @Override
             public void onResponse(Call<PcInfoOfJson> call, Response<PcInfoOfJson> response) {
                 noticeView.setText(response.body().getNotice());
+                cntView.setText(String.valueOf(response.body().getCnt_empty()));
             }
 
             @Override

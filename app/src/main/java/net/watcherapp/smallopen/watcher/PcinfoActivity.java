@@ -56,8 +56,8 @@ public class PcinfoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         pcName = intent.getStringExtra("pcName");
 
-        setRetrofitInit();
-        callPcInfo();
+//        setRetrofitInit();
+//        callPcInfo();
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -121,6 +121,7 @@ public class PcinfoActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
             super.onBackPressed();
+            finish();
     }
 
     @Override
@@ -161,15 +162,15 @@ public class PcinfoActivity extends AppCompatActivity {
                     // Supply index input as an argument.
                     Bundle args = new Bundle();
                     args.putString("pcName", pcName);
+                    Log.d("seatFragment:", pcName);
                     seatFragment.setArguments(args);
                     return seatFragment;
                 case FRAGMENT_SPEC:
-//                    return new PcMapFragment();
-
-                    /*  case FRAGMENT_QANDA:
-                    return new MyFragment();
-                case FRAGMENT_SPEC:
-                    return new MapFragment();*/
+                    return new PcSpecFragment();
+//                case FRAGMENT_FOOD:
+//                    return new MyFragment();
+//                case FRAGMENT_REVIEW:
+//                    return new PcReviewFragment();
 
                 default:
                     return new MyFragment();
