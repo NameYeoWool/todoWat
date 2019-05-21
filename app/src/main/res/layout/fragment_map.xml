@@ -62,7 +62,7 @@
         <TextView
             android:id="@+id/bottom_address"
             android:layout_width="260dp"
-            android:layout_height="25dp"
+            android:layout_height="wrap_content"
             android:text="address"
             android:textSize="13sp"
             android:textStyle="bold"
@@ -73,22 +73,6 @@
             android:layout_marginLeft="20dp"
             />
 
-        <RatingBar
-            android:id="@+id/bottom_ratingbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/bottom_address"
-            android:layout_marginLeft="80dp"
-            android:isIndicator="false"
-            android:max="5"
-            android:numStars="5"
-            android:paddingLeft="0dp"
-            android:rating="3"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
-            android:stepSize="0.5"
-            android:progressTint="@color/yellow"
-            />
 
 
         <TextView
@@ -129,6 +113,24 @@
             android:text="좌석 확인"
             android:textColor="#ffffff"
             />
+
+        <RatingBar
+            android:id="@+id/bottom_ratingbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:isIndicator="false"
+            android:max="5"
+            android:numStars="5"
+            android:paddingLeft="0dp"
+            android:rating="3"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
+            android:stepSize="0.5"
+            android:progressTint="@color/yellow"
+            />
+
 
 
     </RelativeLayout>

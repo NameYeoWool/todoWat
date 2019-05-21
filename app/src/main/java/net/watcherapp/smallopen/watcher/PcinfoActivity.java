@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
@@ -45,12 +46,16 @@ public class PcinfoActivity extends AppCompatActivity {
     protected static RetrofitAPI mRetrofitAPI;
 //    private Call<String> mCallMovieList;
     protected static Call<PcInfoOfJson> mPcInfo;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pcinfo);
 
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "PcInfo Screen", null /* class override */);
 
         // Get the transferred data from source activity.
         Intent intent = getIntent();
@@ -78,7 +83,8 @@ public class PcinfoActivity extends AppCompatActivity {
 
         mRetrofit = new Retrofit.Builder()
 
-                .baseUrl("http://nameyeowool.pythonanywhere.com")
+//                .baseUrl("http://nameyeowool.pythonanywhere.com")
+                .baseUrl("http://www.watcherapp.net")
 
                 .addConverterFactory(GsonConverterFactory.create())
 
@@ -158,6 +164,12 @@ public class PcinfoActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case FRAGMENT_SEAT:
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Fragment");
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "seat");
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
                     SeatFragment seatFragment = new SeatFragment();
                     // Supply index input as an argument.
                     Bundle args = new Bundle();
@@ -166,6 +178,10 @@ public class PcinfoActivity extends AppCompatActivity {
                     seatFragment.setArguments(args);
                     return seatFragment;
                 case FRAGMENT_SPEC:
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString(FirebaseAnalytics.Param.ITEM_ID, "Fragment");
+                    bundle2.putString(FirebaseAnalytics.Param.ITEM_NAME, "spec");
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle2);
                     return new PcSpecFragment();
 //                case FRAGMENT_FOOD:
 //                    return new MyFragment();

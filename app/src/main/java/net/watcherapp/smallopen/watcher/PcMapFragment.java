@@ -95,17 +95,17 @@ public class PcMapFragment extends Fragment
                     return;
                 }
                 else if (tabText.equals("혜화역")){
-                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-                    new MapMarkerTask().execute("종로구");
+//                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+                    new MapMarkerTask().execute("혜화역");
                     mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.582301,127.001849), 17));
                 }else if(tabText.equals("성대역")){
-                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-                    new MapMarkerTask().execute("장안구");
+//                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+                    new MapMarkerTask().execute("성대역");
                     mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.300170,126.970716),17));
                 }else if(tabText.equals("회기역")) {
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-                    new MapMarkerTask().execute("회기동");
-                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.582301,127.001849),17));
+//                    new MapMarkerTask().execute("회기동");
+//                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.582301,127.001849),17));
                 }
 
 
@@ -124,7 +124,8 @@ public class PcMapFragment extends Fragment
                             mPcInfo.enqueue(new Callback<PcInfoOfJson>() {
                                 @Override
                                 public void onResponse(Call<PcInfoOfJson> call, Response<PcInfoOfJson> response) {
-                                    Toast.makeText(getContext(),response.body().getAddress(),Toast.LENGTH_SHORT).show();
+                                    Log.d("onResponse", response.toString());
+//                                    Toast.makeText(getContext(),response.body().getAddress(),Toast.LENGTH_SHORT).show();
                                     PcInfoOfJson result = response.body();
                                     bottomSheet.setVisibility(View.VISIBLE);
                                     txV_pcname.setText(result.getName());
@@ -183,7 +184,8 @@ public class PcMapFragment extends Fragment
 
             try {
 //                String ess = "http://nameyeowool.pythonanywhere.com/room/all/";
-                String ess = "http://nameyeowool.pythonanywhere.com/room/"+strings[0]+"/";
+//                String ess = "http://nameyeowool.pythonanywhere.com/room/"+strings[0]+"/";
+                String ess = "http://www.watcherapp.net/room/"+strings[0]+"/";
                 URL url = new URL(ess);
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.setConnectTimeout(5 * 1000);
@@ -343,13 +345,62 @@ public class PcMapFragment extends Fragment
         mGoogleMap = googleMap;
 
         LatLng SEOUL = new LatLng(37.582301, 127.001849);
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(SEOUL);
-        markerOptions.title("혜화");
-        markerOptions.snippet("수도");
-        googleMap.addMarker(markerOptions);
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(SEOUL);
+//        markerOptions.title("혜화");
+//        markerOptions.snippet("수도");
+//        googleMap.addMarker(markerOptions);
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SEOUL, 17));
 //        googleMap.animateCamera(CameraUpdateFactory.zoomTo(30));
+
+        // first location marker update
+        new MapMarkerTask().execute("혜화역");
+
+
+        mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(final Marker marker) {
+                PcInfoOfJson mPcInfoOfJson;
+                if ( marker.getTag() == null) {
+                    Toast.makeText(getContext(),"가맹점이 아닙니다",Toast.LENGTH_SHORT).show();
+                    bottomSheet.setVisibility(View.GONE);
+                    return false;
+                }else {
+                    Log.d("marker Title", marker.getTitle());
+                    marker.showInfoWindow();
+                    mPcInfo = mRetrofitAPI.getPcInfo(String.valueOf(marker.getTitle()));
+                    mPcInfo.enqueue(new Callback<PcInfoOfJson>() {
+                        @Override
+                        public void onResponse(Call<PcInfoOfJson> call, Response<PcInfoOfJson> response) {
+                            Log.d("onResponse", response.toString());
+//                                    Toast.makeText(getContext(),response.body().getAddress(),Toast.LENGTH_SHORT).show();
+                            PcInfoOfJson result = response.body();
+                            bottomSheet.setVisibility(View.VISIBLE);
+                            txV_pcname.setText(result.getName());
+                            txV_address.setText(result.getAddress());
+                            txV_cnt.setText(String.valueOf(result.getCnt_empty()));
+
+                            btn_info.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent = new Intent(getContext(), PcinfoActivity.class);
+                                    intent.putExtra("pcName", marker.getTitle());
+                                    startActivity(intent);
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<PcInfoOfJson> call, Throwable t) {
+
+                        }
+                    });
+                }
+
+                return true;
+            }
+        });
     }
 
 

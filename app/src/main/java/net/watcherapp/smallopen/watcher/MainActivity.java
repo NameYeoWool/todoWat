@@ -1,6 +1,8 @@
 package net.watcherapp.smallopen.watcher;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -12,10 +14,35 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
+import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import static java.lang.System.exit;
 import static net.watcherapp.smallopen.watcher.PcinfoActivity.setRetrofitInit;
 
 public class MainActivity extends AppCompatActivity
@@ -23,13 +50,15 @@ public class MainActivity extends AppCompatActivity
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public static final String LOG_TAG = "LOGMainActivity";
 
     public static final int FRAGMNET_PCLIST = 0;
     public static final int FRAGMENT_MAP = 1;
     public static final int ACTIVITY_PCINFO= 2;
-
+    SharedPreferences sp;
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +66,40 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics.setCurrentScreen(this, "Main Screen", null /* class override */);
+
+        sp = getSharedPreferences("shared", MODE_PRIVATE);
+//        SharedPreferences.Editor editor2 = sp.edit();
+//        editor2.putBoolean("isShow",true);
+//        editor2.commit();
+        Boolean isShow = sp.getBoolean("isShow",true);
+        if (isShow) {
+            intent = new Intent(this, PopupActivity.class);
+            // call popup activity in backgorund
+            new PopupAsyc().execute();
+        }else{
+            String today = sp.getString("today", "none");
+            if (today.equals("none")){
+                Log.d("todayNone","none");
+            }else{
+                long now = System.currentTimeMillis();
+                Date date = new Date(now);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String getTime = sdf.format(date);
+                if( today.equals(getTime) ){
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putBoolean("isShow",true);
+                    editor.commit();
+                    intent = new Intent(this, PopupActivity.class);
+                    new PopupAsyc().execute();
+                }
+            }
+
+        }
 
         setRetrofitInit();
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -132,8 +192,16 @@ public class MainActivity extends AppCompatActivity
         public Fragment getItem(int position) {
             switch (position) {
                 case FRAGMNET_PCLIST:
+                    Bundle bundle = new Bundle();
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Fragment pcList");
+                    bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "pcList");
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
                     return new PcListFragment();
                 case FRAGMENT_MAP:
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString(FirebaseAnalytics.Param.ITEM_ID, "Fragment pcList");
+                    bundle2.putString(FirebaseAnalytics.Param.ITEM_NAME, "pcList");
+                    mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle2);
                     return new PcMapFragment();
 
 
@@ -153,6 +221,25 @@ public class MainActivity extends AppCompatActivity
 
 
             return 2;
+        }
+    }
+
+
+    class PopupAsyc extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... strings) {
+
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Void s) {
+            startActivityForResult(intent, 1);
         }
     }
 }

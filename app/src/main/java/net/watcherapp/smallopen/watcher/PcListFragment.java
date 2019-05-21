@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,13 +55,18 @@ public class PcListFragment extends Fragment {
 
     JSONObject mResult = null;
     protected RequestQueue mQueue = null;
-
     View rootView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 //        mQueue = Volley.newRequestQueue(getContext());
         rootView = inflater.inflate(R.layout.fragment_pclist, container, false);
+
+
+
+        // first setting location
+        new PcListTask().execute("혜화역");
+
 
         // multi radio button
         SwitchMultiButton mSwitchMultiButton = (SwitchMultiButton) rootView.findViewById(R.id.switchmultibutton);
@@ -69,10 +75,10 @@ public class PcListFragment extends Fragment {
             public void onSwitch(int position, String tabText) {
                 if(tabText.equals("혜화역")){
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-                    new PcListTask().execute("종로구");
+                    new PcListTask().execute("혜화역");
                 }else if(tabText.equals("성대역")){
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
-                    new PcListTask().execute("장안구");
+                    new PcListTask().execute("성대역");
                 }else if(tabText.equals("회기역")) {
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
 //                    new PcListTask().execute("종로구");
@@ -99,7 +105,8 @@ public class PcListFragment extends Fragment {
 
             try {
 //                String ess = "http://nameyeowool.pythonanywhere.com/room/all/";
-                String ess = "http://nameyeowool.pythonanywhere.com/room/"+strings[0]+"/";
+//                String ess = "http://nameyeowool.pythonanywhere.com/room/"+strings[0]+"/";
+                String ess = "http://www.watcherapp.net/room/"+strings[0]+"/";
                 URL url = new URL(ess);
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.setConnectTimeout(5 * 1000);
