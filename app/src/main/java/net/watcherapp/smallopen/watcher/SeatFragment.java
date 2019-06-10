@@ -18,6 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static net.watcherapp.smallopen.watcher.PcinfoActivity.cnt_empty;
 import static net.watcherapp.smallopen.watcher.PcinfoActivity.mPcInfo;
 import static net.watcherapp.smallopen.watcher.PcinfoActivity.mRetrofitAPI;
 import static net.watcherapp.smallopen.watcher.PcinfoActivity.pcName;
@@ -25,7 +26,6 @@ import static net.watcherapp.smallopen.watcher.PcinfoActivity.pcName;
 
 public class SeatFragment extends Fragment {
     private TextView nameView;
-    private TextView noticeView;
     private TextView cntView;
     private ImageView imageView;
     private ImageButton imageButton;
@@ -34,12 +34,12 @@ public class SeatFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_seat_image, container, false);
         nameView = (TextView) rootView.findViewById(R.id.seat_pcName);
-        noticeView = (TextView) rootView.findViewById(R.id.seat_notice);
         cntView = (TextView) rootView.findViewById(R.id.seat_cnt_textView);
         imageView = (ImageView) rootView.findViewById(R.id.seat_image);
         imageButton = (ImageButton) rootView.findViewById(R.id.btn_refresh);
 
         nameView.setText(pcName);
+        cntView.setText(cnt_empty);
 
 
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -54,23 +54,6 @@ public class SeatFragment extends Fragment {
             }
         });
 
-//        Bundle args = getArguments();
-//        String pcName= args.getString("pcName", "");
-//        String notice= args.getString("notice", "");
-
-        mPcInfo = mRetrofitAPI.getPcInfo(pcName);
-        mPcInfo.enqueue(new Callback<PcInfoOfJson>() {
-            @Override
-            public void onResponse(Call<PcInfoOfJson> call, Response<PcInfoOfJson> response) {
-                noticeView.setText(response.body().getNotice());
-                cntView.setText(String.valueOf(response.body().getCnt_empty()));
-            }
-
-            @Override
-            public void onFailure(Call<PcInfoOfJson> call, Throwable t) {
-
-            }
-        });
 
         Picasso.get()
 //                .load("http://nameyeowool.pythonanywhere.com/room/seat/"+pcName)

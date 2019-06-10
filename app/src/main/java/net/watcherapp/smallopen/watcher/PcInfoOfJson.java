@@ -31,6 +31,9 @@ public class PcInfoOfJson {
     @SerializedName("cnt_empty")
     @Expose
     private int cnt_empty;
+    @SerializedName("rating")
+    @Expose
+    private double rating;
 
 
 
@@ -42,6 +45,7 @@ public class PcInfoOfJson {
         this.notice = jOb.optString("notice", "non");
         this.spec = jOb.optString("spec","non");
         this.cnt_empty = jOb.optInt("cnt_empty",0);
+        this.rating = jOb.optDouble("rating",0);
     }
 
     public int getCnt_empty() {
@@ -98,5 +102,13 @@ public class PcInfoOfJson {
 
     public void setSpec(String spec) {
         this.spec = spec;
+    }
+
+    public double getRating() {
+        return rating;
+    }
+
+    public void setRating(double rating) {
+        this.rating = rating;
     }
 }

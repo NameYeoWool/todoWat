@@ -55,15 +55,14 @@
             android:scaleX="1"
             android:scaleY="1"
             android:stepSize="0.5" />
-        <TextView
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_review"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/review_ratingbar"
-            android:layout_marginTop="50dp"
-            android:text="아직 리뷰를 지원하지 않습니다."
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:layout_marginLeft="20dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_below="@+id/review_ratingbar"
             />
 
         <android.support.design.widget.FloatingActionButton

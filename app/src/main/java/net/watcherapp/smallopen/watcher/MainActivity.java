@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private FirebaseAnalytics mFirebaseAnalytics;
 
-    public static final String LOG_TAG = "LOGMainActivity";
-
     public static final int FRAGMNET_PCLIST = 0;
     public static final int FRAGMENT_MAP = 1;
     public static final int ACTIVITY_PCINFO= 2;

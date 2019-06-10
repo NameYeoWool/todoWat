@@ -29,7 +29,13 @@
                 android:id="@+id/tabItem2_pcinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="사양 및 이벤트" />
+                android:text="사양" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tabItem_events_pcinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="이벤트 및 게임대회"/>
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem3_pcinfo"

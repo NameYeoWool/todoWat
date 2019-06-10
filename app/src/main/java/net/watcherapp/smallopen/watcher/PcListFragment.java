@@ -33,10 +33,6 @@ import static java.lang.System.exit;
 
 public class PcListFragment extends Fragment {
 
-    public static final String LOG_TAG = "LOGNewsFragment";
-
-    // protected TextView mTextView;
-    public static final String QUEUE_TAG = "VolleyRequest";
 //    JSONObject mResult = null;
 //    ArrayList<PcListInfo> mList = new ArrayList<PcListInfo>();
 //    protected NewsAdapter mAdapter = new NewsAdapter(mList);
@@ -65,7 +61,11 @@ public class PcListFragment extends Fragment {
 
 
         // first setting location
-        new PcListTask().execute("혜화역");
+        try {
+            new PcListTask().execute("혜화역");
+        }catch(Exception e){
+            Toast.makeText(getContext(),"인터넷을 확인해주셍",Toast.LENGTH_SHORT).show();
+        }
 
 
         // multi radio button
@@ -74,10 +74,10 @@ public class PcListFragment extends Fragment {
             @Override
             public void onSwitch(int position, String tabText) {
                 if(tabText.equals("혜화역")){
-                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
                     new PcListTask().execute("혜화역");
                 }else if(tabText.equals("성대역")){
-                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
                     new PcListTask().execute("성대역");
                 }else if(tabText.equals("회기역")) {
                     Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
@@ -87,9 +87,6 @@ public class PcListFragment extends Fragment {
 
             }
         });
-
-        // recycler view
-//        new PcListTask().execute();
 
         return rootView;
     }
@@ -155,9 +152,9 @@ public class PcListFragment extends Fragment {
                 cnt_all = jsonOb.optInt("cnt_all");
                 cnt_contact = jsonOb.optInt("cnt_contact");
                 cnt_contact_non = jsonOb.optInt("cnt_non_contact");
-                Log.d("json", String.valueOf(cnt_all));
-                Log.d("json", String.valueOf(cnt_contact));
-                Log.d("json", String.valueOf(cnt_contact_non));
+//                Log.d("json", String.valueOf(cnt_all));
+//                Log.d("json", String.valueOf(cnt_contact));
+//                Log.d("json", String.valueOf(cnt_contact_non));
 
                 // first header
                 SectionItem sectionFirstHeader = new SectionItem("Watcher 가맹점");
@@ -183,10 +180,10 @@ public class PcListFragment extends Fragment {
                     consolidatedList.add(contactNonItem);
                 }
 
-                Log.d("consolidated_list", String.valueOf(consolidatedList));
+//                Log.d("consolidated_list", String.valueOf(consolidatedList));
 
             }catch (JSONException e){
-                Log.d("nojson",String.valueOf(e));
+//                Log.d("nojson",String.valueOf(e));
                 Toast.makeText(getContext(),"error no json",Toast.LENGTH_LONG).show();
                 exit(0);
             }
@@ -198,19 +195,20 @@ public class PcListFragment extends Fragment {
                     if(item == null){
                         Toast.makeText(getContext(),"가맹점이 아닙니다.", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(getContext(),item.getName(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(),item.getName(), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getContext(), PcinfoActivity.class);
                         intent.putExtra("pcName", item.getName());
+                        intent.putExtra("cnt_empty", String.valueOf(item.getCnt_empty()));
                         startActivity(intent);
                     }
                 }
             });
 
             //adapter = new Adapter(getContext(), consolidatedList);
-            Log.d("end","After madapter2 end");
+//            Log.d("end","After madapter2 end");
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-            Log.d("end", "After layoutManager ");
+//            Log.d("end", "After layoutManager ");
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
             mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);

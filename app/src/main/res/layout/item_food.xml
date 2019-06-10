@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="20dp"
+    app:cardCornerRadius="20dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+
+        <ImageView
+            android:id="@+id/item_food_rank_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            />
+
+        <TextView
+            android:id="@+id/item_food_rank_text"
+            android:layout_width="40dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="8dp"
+            android:text="0"
+            android:textStyle="bold"
+            android:gravity="center_vertical|center_horizontal"
+            />
+
+        <ImageView
+            android:id="@+id/item_food_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/pcroom"
+            />
+        <TextView
+            android:id="@+id/item_food_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@id/item_food_image"
+            android:layout_marginLeft="20dp"
+            android:text="테스트 중입니다."
+            android:textStyle="bold"
+            android:textSize="20sp"
+            />
+
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

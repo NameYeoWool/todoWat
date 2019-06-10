@@ -35,13 +35,14 @@ public class PcinfoActivity extends AppCompatActivity {
     private SectionsPagerAdapter2 mSectionsPagerAdapter;
     private ViewPager mViewPager;
 
-    public static final String LOG_TAG = "LOGMainActivity";
-
     public static final int FRAGMENT_SEAT = 0;
     public static final int FRAGMENT_SPEC = 1;
-    public static final int FRAGMENT_FOOD = 2;
-    public static final int FRAGMENT_REVIEW = 3;
+    public static final int FRAGMENT_EVENTS = 2;
+    public static final int FRAGMENT_FOOD = 3;
+    public static final int FRAGMENT_REVIEW = 4;
+
     protected static String pcName;
+    protected static String cnt_empty;
     protected static Retrofit mRetrofit;
     protected static RetrofitAPI mRetrofitAPI;
 //    private Call<String> mCallMovieList;
@@ -60,6 +61,7 @@ public class PcinfoActivity extends AppCompatActivity {
         // Get the transferred data from source activity.
         Intent intent = getIntent();
         pcName = intent.getStringExtra("pcName");
+        cnt_empty = intent.getStringExtra("cnt_empty");
 
 //        setRetrofitInit();
 //        callPcInfo();
@@ -164,7 +166,6 @@ public class PcinfoActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case FRAGMENT_SEAT:
-
                     Bundle bundle = new Bundle();
                     bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Fragment");
                     bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "seat");
@@ -172,10 +173,9 @@ public class PcinfoActivity extends AppCompatActivity {
 
                     SeatFragment seatFragment = new SeatFragment();
                     // Supply index input as an argument.
-                    Bundle args = new Bundle();
-                    args.putString("pcName", pcName);
-                    Log.d("seatFragment:", pcName);
-                    seatFragment.setArguments(args);
+//                    Bundle args_seat = new Bundle();
+//                    args_seat.putString("pcName", pcName);
+//                    seatFragment.setArguments(args_seat);
                     return seatFragment;
                 case FRAGMENT_SPEC:
                     Bundle bundle2 = new Bundle();
@@ -183,11 +183,13 @@ public class PcinfoActivity extends AppCompatActivity {
                     bundle2.putString(FirebaseAnalytics.Param.ITEM_NAME, "spec");
                     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle2);
                     return new PcSpecFragment();
-//                case FRAGMENT_FOOD:
-//                    return new MyFragment();
-//                case FRAGMENT_REVIEW:
-//                    return new PcReviewFragment();
 
+                case FRAGMENT_EVENTS:
+                    return new EventsFragment();
+                case FRAGMENT_FOOD:
+                    return new FoodListFragment();
+                case FRAGMENT_REVIEW:
+                    return new ReviewFragment();
                 default:
                     return new MyFragment();
 
@@ -200,7 +202,7 @@ public class PcinfoActivity extends AppCompatActivity {
             //return 4;
 
 
-            return 4;
+            return 5;
         }
     }
 }

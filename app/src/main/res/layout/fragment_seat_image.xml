@@ -14,7 +14,7 @@
             android:layout_height="match_parent">
             <TextView
                 android:id="@+id/seat_pcName"
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:text="pcName"
@@ -26,6 +26,7 @@
                 android:background="@drawable/layout_bg"
                 />
             <TextView
+                android:id="@+id/seat_empty"
                 android:layout_width="40dp"
                 android:layout_height="20dp"
                 android:layout_below="@+id/seat_pcName"
@@ -68,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="35dp"
+                android:layout_alignTop="@+id/seat_empty"
                 android:layout_marginRight="20dp"
                 android:src="@drawable/ic_refresh"
                 android:padding="0dp"
@@ -103,35 +104,6 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="#ff0000"
-                />
-
-            <TextView
-                android:id="@+id/title_notice"
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_below="@id/seat_image"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="100dp"
-                android:text="이벤트 및 공지사항"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="#ffffff"
-                android:gravity="center"
-                android:background="@drawable/layout_bg"
-
-                />
-            <TextView
-                android:id="@+id/seat_notice"
-                android:layout_width="400dp"
-                android:layout_height="300dp"
-                android:layout_below="@id/title_notice"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="10dp"
-                android:paddingLeft="20dp"
-                android:textSize="20sp"
-                android:text="안내사항"
-                android:textStyle="bold"
                 />
 
         </RelativeLayout>
